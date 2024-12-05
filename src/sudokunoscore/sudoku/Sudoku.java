@@ -11,6 +11,7 @@ import java.io.IOException;
 public class Sudoku extends JFrame {
     private static final long serialVersionUID = 1L;
 
+
     private GameBoardPanel board = new GameBoardPanel(this);
     private WelcomePanel welcomePanel = new WelcomePanel();
     private JPanel gamePanel = new JPanel(new BorderLayout());
