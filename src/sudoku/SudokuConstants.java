@@ -5,6 +5,7 @@
 //* 1 - 5026231151 - Kayla Nathania Azzahra
 // * 2 - 5026231202 - Alisha Rafimalia
 
+
 package sudoku;
 
 public class SudokuConstants {
