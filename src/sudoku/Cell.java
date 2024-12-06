@@ -6,7 +6,6 @@
 // * 2 - 5026231202 - Alisha Rafimalia
 
 
-
 package sudoku;
 
 import javax.swing.*;
