@@ -22,10 +22,16 @@ public class Sudoku extends JFrame {
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
         cp.add(welcomePanel, BorderLayout.CENTER);
+
+        // Set the preferred size to maintain a 1:1 aspect ratio
+        int size = 600; // You can adjust this value to make the window larger or smaller
+        setPreferredSize(new Dimension(size, size));
+
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
         setVisible(true);
+        setLocationRelativeTo(null); // Center the window on the screen
     }
 
     private class WelcomePanel extends JPanel {
