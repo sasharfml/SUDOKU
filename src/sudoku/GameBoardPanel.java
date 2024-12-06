@@ -2,8 +2,6 @@ package sudoku;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -40,20 +38,6 @@ public class GameBoardPanel extends JPanel {
 
         setBorder(BorderFactory.createLineBorder(new Color(128, 0, 128), 2)); // Purple color for outer border
         add(gridPanel, BorderLayout.CENTER);
-
-        // Add hint button
-        JButton hintButton = new JButton("Hint");
-        hintButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                useHint();
-            }
-        });
-
-        // Assuming there's a panel for buttons, add the hint button to it
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(hintButton);
-        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public void newGame(int difficultyLevel) {
@@ -117,7 +101,7 @@ public class GameBoardPanel extends JPanel {
         }
     }
 
-    private void useHint() {
+    public void useHint() {
         if (sudoku.getScore() < 10) {
             JOptionPane.showMessageDialog(this, "You need at least 10 Points to Use this Hint", "Insufficient Points", JOptionPane.WARNING_MESSAGE);
             return;
@@ -142,8 +126,40 @@ public class GameBoardPanel extends JPanel {
             randomCell.getTextField().setBackground(new Color(144, 238, 144)); // Set background to green
             sudoku.updateScore(false); // Deduct 10 points
 
-            // Check if all cells are correctly filled
-            checkAllCellsCorrect();
+            // Manually check if all cells are correctly filled
+            boolean allCorrect = true;
+            for (int row = 0; row < GRID_SIZE; ++row) {
+                for (int col = 0; col < GRID_SIZE; ++col) {
+                    JTextField textField = cells[row][col].getTextField();
+                    if (textField.isEditable()) {
+                        if (!textField.getText().equals(String.valueOf(puzzle.numbers[row][col]))) {
+                            allCorrect = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (allCorrect) {
+                sudoku.playSound("src/sudoku/menang.wav"); // Play victory sound once
+
+                int option = JOptionPane.showOptionDialog(
+                        this,
+                        "Congratulations! You have finished this level!",
+                        "Level Complete",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.INFORMATION_MESSAGE,
+                        null,
+                        new String[]{"Next Level", "Quit"},
+                        "Next Level"
+                );
+
+                if (option == JOptionPane.YES_OPTION) {
+                    sudoku.startNextLevel(); // Start the next level
+                } else if (option == JOptionPane.NO_OPTION) {
+                    sudoku.returnToWelcome(); // Return to the welcome screen
+                }
+            }
         }
     }
 

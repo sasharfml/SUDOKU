@@ -213,6 +213,7 @@ public class Sudoku extends JFrame {
         // Create a panel for the buttons
         JPanel buttonPanel = new JPanel();
         JButton resetButton = new JButton("Reset");
+        JButton hintButton = new JButton("Hint");
         JButton nextLevelButton = new JButton("Next Level");
         JButton quitButton = new JButton("Quit");
 
@@ -222,6 +223,13 @@ public class Sudoku extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 board.newGame(currentLevel * 5); // Reset the current level
                 resetScore(); // Reset score when starting a new game
+            }
+        });
+
+        hintButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                board.useHint(); // Use hint
             }
         });
 
@@ -242,6 +250,7 @@ public class Sudoku extends JFrame {
 
         // Add buttons to the button panel
         buttonPanel.add(resetButton);
+        buttonPanel.add(hintButton); // Add hint button here
         buttonPanel.add(nextLevelButton);
         buttonPanel.add(quitButton);
 
