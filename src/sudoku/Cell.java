@@ -45,7 +45,7 @@ public class Cell extends JPanel {
         } else {
             textField.setText("");
             textField.setEditable(true);
-            textField.setBackground(new Color(230, 230, 250));
+            textField.setBackground(new Color(230, 200, 250));
         }
         answeredCorrectly = false; // Reset the answered state for new games
     }
@@ -73,5 +73,14 @@ public class Cell extends JPanel {
 
     public void setAnsweredCorrectly(boolean answeredCorrectly) {
         this.answeredCorrectly = answeredCorrectly;
+    }
+
+    // Add these getter methods
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
     }
 }
