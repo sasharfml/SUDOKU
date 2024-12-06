@@ -1,3 +1,11 @@
+//ES234317-Algorithm and Data Structures
+//* Semester Ganjil, 2024/2025
+//* Group Capstone Project
+//* Group #14 Kelas C
+//* 1 - 5026231151 - Kayla Nathania Azzahra
+// * 2 - 5026231202 - Alisha Rafimalia
+
+
 package sudoku;
 
 import javax.swing.*;
@@ -45,7 +53,7 @@ public class Cell extends JPanel {
         } else {
             textField.setText("");
             textField.setEditable(true);
-            textField.setBackground(new Color(230, 230, 250));
+            textField.setBackground(new Color(230, 200, 250));
         }
         answeredCorrectly = false; // Reset the answered state for new games
     }
@@ -73,5 +81,14 @@ public class Cell extends JPanel {
 
     public void setAnsweredCorrectly(boolean answeredCorrectly) {
         this.answeredCorrectly = answeredCorrectly;
+    }
+
+    // Add these getter methods
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
     }
 }
